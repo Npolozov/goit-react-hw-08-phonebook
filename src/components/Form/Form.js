@@ -2,8 +2,8 @@ import { useForm } from 'react-hook-form';
 import { Wrapper, Button, Label, Input } from './Form.style';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContact } from 'redux/selectors';
-import { addContact } from 'redux/contactOperations';
+import { getContact } from 'redux/contact/selectors';
+import { addContact } from 'redux/contact/contactOperations';
 
 export const ContactForm = ({ toggleModal }) => {
   const dispatch = useDispatch();

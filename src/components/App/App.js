@@ -1,50 +1,35 @@
-import { useState } from 'react';
-import { ContactForm } from '../Form/Form';
-import { List } from '../List/List';
-import { Filter } from '../Filter/Filter';
-import {
-  Container,
-  Wrapper,
-  WrapperContact,
-  Title,
-  Button,
-} from './App.styled';
+import { Routes, Route } from 'react-router-dom';
+import { Home } from 'pages/Home';
+import { Login } from 'pages/Login';
+import { Register } from 'pages/Register';
+import { Contacts } from 'pages/Contacts';
 import { GlobalStyle } from '../GlobalStyles.styled';
-import { OpenModal } from 'components/Modal/Modal';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useSelector } from 'react-redux';
-import { getContact } from 'redux/selectors';
+import { Layout } from 'components/Layout';
+import { useDispatch } from 'react-redux';
+import { refreshUser } from 'redux/auth/Operations';
+import { useAuth } from 'hooks/useAuth';
+import { useEffect } from 'react';
 
 export const App = () => {
-  const contacts = useSelector(getContact);
-  const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
     <>
-      <Container>
-        <Wrapper>
-          <Button type="button" onClick={toggleModal}>
-            Add Contact
-          </Button>
-          {showModal && (
-            <OpenModal onClose={toggleModal}>
-              <Title>Phonebook</Title>
-              <ContactForm toggleModal={toggleModal} />
-            </OpenModal>
-          )}
-        </Wrapper>
-        <WrapperContact>
-          <Title>Contacts</Title>
-          {contacts.length >= 1 && <Filter />}
-          <List />
-        </WrapperContact>
-        <ToastContainer autoClose={2000} position="top-right" />
-      </Container>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/contacts" element={<Contacts />}></Route>
+        </Route>
+      </Routes>
       <GlobalStyle />
     </>
   );

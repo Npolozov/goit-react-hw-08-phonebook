@@ -6,9 +6,9 @@ import {
   getStatusFilter,
   getError,
   getIsLoading,
-} from 'redux/selectors';
+} from 'redux/contact/selectors';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/contactOperations';
+import { fetchContacts } from 'redux/contact/contactOperations';
 
 export const List = () => {
   const dispatch = useDispatch();

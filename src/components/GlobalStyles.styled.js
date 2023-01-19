@@ -11,10 +11,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
+   width: 1200px;
+   margin: 0 auto;
+   padding: 0 20px 0 20px;
 }
 
 code {

@@ -1,9 +1,9 @@
 import { Button, ConteinerButton } from './ListContact.styled';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/contactOperations';
+import { deleteContact } from 'redux/contact/contactOperations';
 import { toast } from 'react-toastify';
-import { getIsLoading } from 'redux/selectors';
+import { getIsLoading } from 'redux/contact/selectors';
 
 export function ListContact({ name, number, id }) {
   const dispatch = useDispatch();
