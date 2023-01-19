@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { logIn } from 'redux/auth/Operations';
+import { toast } from 'react-toastify';
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,14 @@ export const Login = () => {
   const onSubmit = values => {
     console.log(values);
     // const { name, email, password } = values;
-    dispatch(logIn(values));
+    dispatch(logIn(values))
+      .unwrap()
+      .then(() => toast.success('You are successfully logged in'))
+      .catch(() =>
+        toast.error(
+          'Something went wrong...Try reloading the page and enter valid email, password'
+        )
+      );
     reset();
   };
 
