@@ -23,6 +23,8 @@ export const Contacts = () => {
     setShowModal(!showModal);
   };
 
+  console.log(contacts);
+
   return (
     <>
       <Container>
