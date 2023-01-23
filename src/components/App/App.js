@@ -1,8 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import { Home } from 'pages/Home';
-import { Login } from 'pages/Login';
-import { Register } from 'pages/Register';
-import { Contacts } from 'pages/Contacts';
 import { GlobalStyle } from '../GlobalStyles.styled';
 import { Layout } from 'components/Layout';
 import { useDispatch } from 'react-redux';
@@ -11,6 +8,9 @@ import { useAuth } from 'hooks/useAuth';
 import { useEffect } from 'react';
 import { PrivateRoute } from '../PrivateRoute';
 import { RestrictedRoute } from '../RestrictedRoute';
+import { LoginForm } from 'pages/LoginForm';
+import { RegisterForm } from 'pages/RegisterForm';
+import { PersonalContacts } from 'pages/PersonalContacts';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -37,20 +37,26 @@ export const App = () => {
             element={
               <RestrictedRoute
                 redirectTo="/contacts"
-                component={<Register />}
+                component={<RegisterForm />}
               />
             }
           ></Route>
           <Route
             path="/login"
             element={
-              <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<LoginForm />}
+              />
             }
           ></Route>
           <Route
             path="/contacts"
             element={
-              <PrivateRoute redirectTo="/login" component={<Contacts />} />
+              <PrivateRoute
+                redirectTo="/login"
+                component={<PersonalContacts />}
+              />
             }
           ></Route>
         </Route>

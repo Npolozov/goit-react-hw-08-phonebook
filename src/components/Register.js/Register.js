@@ -8,7 +8,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { useAuth } from 'hooks/useAuth';
 
 export const Register = () => {
-    const { authIsLoading } = useAuth();
+  const { authIsLoading } = useAuth();
   const dispatch = useDispatch();
 
   const {
@@ -69,7 +69,7 @@ export const Register = () => {
 
         <p>{errors.password?.message}</p>
         <LoadingButton
-            loading={authIsLoading}
+          loading={authIsLoading}
           loadingPosition="start"
           startIcon={<SaveIcon />}
           type="submit"

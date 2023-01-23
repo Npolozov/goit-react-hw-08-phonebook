@@ -1,8 +1,8 @@
 import { Wrapper, Label, Input } from './Filter.styled';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { getStatusFilter } from 'redux/contact/selectors';
-import { updateFilter } from 'redux/contact/filterSlice';
+import { getStatusFilter } from 'redux/filter/selector';
+import { updateFilter } from 'redux/filter/filterSlice';
 
 export const Filter = () => {
   const dispatch = useDispatch();

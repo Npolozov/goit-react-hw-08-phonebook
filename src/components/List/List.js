@@ -1,12 +1,8 @@
 import { ListContact } from '../ListContact/ListContact';
 import { ListStyle, ItemStyle, TotalParagraf } from './List.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getContact,
-  getStatusFilter,
-  getError,
-  getIsLoading,
-} from 'redux/contact/selectors';
+import { getContact, getError, getIsLoading } from 'redux/contact/selectors';
+import { getStatusFilter } from 'redux/filter/selector';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contact/contactOperations';
 
@@ -21,11 +17,6 @@ export const List = () => {
   const filter = useSelector(getStatusFilter);
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getError);
-  console.log(contacts);
-
-  // if (!contacts) {
-  //   return;
-  // }
 
   const normalizeFilter = filter.toLowerCase();
 
