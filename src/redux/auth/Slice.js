@@ -8,19 +8,27 @@ const initialState = {
   isRefreshing: false,
 };
 
+const handlePending = state => {
+  state.authIsLoading = true;
+};
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
+    [registerUse.pending]: handlePending,
     [registerUse.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+      state.authIsLoading = false;
     },
+    [logIn.pending]: handlePending,
     [logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.isLoggedIn = true;
+        state.isLoggedIn = true;
+          state.authIsLoading = false;
     },
     [logOut.fulfilled](state) {
       state.user = { name: null, email: null };

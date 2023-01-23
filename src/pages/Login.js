@@ -2,9 +2,15 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { logIn } from 'redux/auth/Operations';
 import { toast } from 'react-toastify';
+import { Container, Form } from './Login.styled';
+import TextField from '@mui/material/TextField';
+import AutoStoriesSharpIcon from '@mui/icons-material/AutoStoriesSharp';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { useAuth } from 'hooks/useAuth';
 
 export const Login = () => {
   const dispatch = useDispatch();
+  const { authIsLoading } = useAuth();
 
   const {
     register,
@@ -33,54 +39,46 @@ export const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-      <label htmlFor="email">Username</label>
-      <input
-        id="email "
-        type="text"
-        {...register('email', { required: 'This is required' })}
-      />
+    <Container>
+      <Form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+        <TextField
+          fullWidth
+          type="text"
+          id="outlined-basic"
+          label="email"
+          variant="outlined"
+          sx={{ mb: '15px' }}
+          {...register('email', { required: 'This is required' })}
+        />
 
-      <p>{errors.name?.message}</p>
+        <p>{errors.email?.message}</p>
 
-      <label htmlFor="password">Password</label>
-      <input
-        id="password "
-        type="text"
-        {...register('password', {
-          required: 'This is required',
-          minLength: 6,
-        })}
-      />
+        <TextField
+          fullWidth
+          type="text"
+          id="outlined-basic"
+          label="password"
+          variant="outlined"
+          sx={{ mb: '15px' }}
+          {...register('password', {
+            required: 'This is required',
+            minLength: 6,
+          })}
+        />
 
-      <p>{errors.name?.message}</p>
-      <button type="submit">Log In</button>
-    </form>
+        <p>{errors.password?.message}</p>
+        <LoadingButton
+          loading={authIsLoading}
+          loadingPosition="start"
+          startIcon={<AutoStoriesSharpIcon />}
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
+          Log In
+        </LoadingButton>
+      </Form>
+    </Container>
   );
-
-  //   const handleSubmit = e => {
-  //     e.preventDefault();
-  //     const form = e.currentTarget;
-  //     dispatch(
-  //       logIn({
-  //         email: form.elements.email.value,
-  //         password: form.elements.password.value,
-  //       })
-  //     );
-  //     form.reset();
-  //   };
-
-  //   return (
-  //     <form autoComplete="off" onSubmit={handleSubmit}>
-  //       <label>
-  //         Email
-  //         <input type="email" name="email" />
-  //       </label>
-  //       <label>
-  //         Password
-  //         <input type="password" name="password" />
-  //       </label>
-  //       <button type="submit">Log In</button>
-  //     </form>
-  //   );
 };
