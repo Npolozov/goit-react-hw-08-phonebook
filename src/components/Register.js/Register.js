@@ -14,7 +14,7 @@ export const Register = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     defaultValues: {
       name: '',
@@ -40,10 +40,15 @@ export const Register = () => {
           variant="outlined"
           type="text"
           sx={{ mb: '15px' }}
-          {...register('name', { required: 'This is required' })}
+          {...register('name', { required: 'Name is required' })}
         />
 
-        <p>{errors.name?.message}</p>
+        <p
+          className="errorContainer"
+          style={{ marginBottom: '15px', color: 'red' }}
+        >
+          {errors.name?.message}
+        </p>
 
         <TextField
           fullWidth
@@ -52,9 +57,21 @@ export const Register = () => {
           variant="outlined"
           type="text"
           sx={{ mb: '15px' }}
-          {...register('email', { required: 'This is required' })}
+          {...register('email', {
+            required: 'Email is required',
+            pattern: {
+              value:
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: 'Please enter valid email',
+            },
+          })}
         />
-        <p>{errors.email?.message}</p>
+        <p
+          className="errorContainer"
+          style={{ marginBottom: '15px', color: 'red' }}
+        >
+          {errors.email?.message}
+        </p>
         <TextField
           fullWidth
           id="outlined-basic"
@@ -67,7 +84,12 @@ export const Register = () => {
           })}
         />
 
-        <p>{errors.password?.message}</p>
+        <p
+          className="errorContainer"
+          style={{ marginBottom: '15px', color: 'red' }}
+        >
+          {errors.password?.message}
+        </p>
         <LoadingButton
           loading={authIsLoading}
           loadingPosition="start"
@@ -76,6 +98,7 @@ export const Register = () => {
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
+          disabled={!isValid}
         >
           Register
         </LoadingButton>

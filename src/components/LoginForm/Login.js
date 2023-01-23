@@ -15,13 +15,14 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     reset,
   } = useForm({
     defaultValues: {
       name: ' ',
       password: '',
     },
+    mode: 'onChange',
   });
 
   const onSubmit = values => {
@@ -48,10 +49,22 @@ export const Login = () => {
           label="email"
           variant="outlined"
           sx={{ mb: '15px' }}
-          {...register('email', { required: 'This is required' })}
+          {...register('email', {
+            required: 'Email is required',
+            pattern: {
+              value:
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: 'Please enter valid email',
+            },
+          })}
         />
 
-        <p>{errors.email?.message}</p>
+        <p
+          className="errorContainer"
+          style={{ marginBottom: '15px', color: 'red' }}
+        >
+          {errors.email?.message}
+        </p>
 
         <TextField
           fullWidth
@@ -61,12 +74,17 @@ export const Login = () => {
           variant="outlined"
           sx={{ mb: '15px' }}
           {...register('password', {
-            required: 'This is required',
+            required: 'Password is required',
             minLength: 6,
           })}
         />
 
-        <p>{errors.password?.message}</p>
+        <p
+          className="errorContainer"
+          style={{ marginBottom: '15px', color: 'red' }}
+        >
+          {errors.password?.message}
+        </p>
         <LoadingButton
           loading={authIsLoading}
           loadingPosition="start"
@@ -75,6 +93,7 @@ export const Login = () => {
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
+          disabled={!isValid}
         >
           Log In
         </LoadingButton>
