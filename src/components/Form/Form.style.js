@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 // import { Field } from 'formik';
 
-export const Wrapper = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 0 0 20px 0;
+  text-align: center;
+  padding: 20px;
 `;
 
 export const Input = styled.input`
@@ -35,4 +36,8 @@ export const Button = styled.button`
 
 export const Label = styled.label`
   margin-bottom: 10px;
+`;
+
+export const Title = styled.h2`
+  margin-bottom: 20px;
 `;

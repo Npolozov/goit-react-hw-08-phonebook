@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
   border: 1px solid black;
   padding: 20px;
   margin: 0 0 20px 0;
-  width: 600px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px 4px 4px 4px;
@@ -22,6 +21,10 @@ export const WrapperContact = styled.div`
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px 4px 4px 4px;
+
+  @media screen and (max-width: 768px) {
+    width: 420px;
+  }
 `;
 
 export const Title = styled.h2`

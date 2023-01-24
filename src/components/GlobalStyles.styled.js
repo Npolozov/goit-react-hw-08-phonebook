@@ -14,6 +14,14 @@ body {
    width: 1200px;
    margin: 0 auto;
    padding: 0 20px 0 20px;
+
+   @media screen and (max-width: 1200px)  {
+      width: 768px;
+    }
+
+    @media screen and (max-width: 768px)  {
+      width: 488px;
+    }
 }
 
 code {

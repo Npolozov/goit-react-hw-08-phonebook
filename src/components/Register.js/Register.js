@@ -80,7 +80,7 @@ export const Register = () => {
           type="text"
           sx={{ mb: '15px' }}
           {...register('password', {
-            required: 'This is required',
+            required: 'Password is required',
           })}
         />
 

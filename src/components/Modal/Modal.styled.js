@@ -12,7 +12,6 @@ export const BackDrop = styled.div`
 export const Modal = styled.div`
   width: 500px;
   max-height: 100%;
-  padding: 20px 10px;
   border: 1px solid black;
   background-color: white;
   border-radius: 20px;
@@ -23,4 +22,8 @@ export const Modal = styled.div`
   cursor: default;
   overflow-x: hidden;
   overflow-y: auto;
+
+  @media screen and (max-width: 768px) {
+    width: 400px;
+  }
 `;

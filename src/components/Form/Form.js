@@ -1,23 +1,29 @@
 import { useForm } from 'react-hook-form';
-import { Wrapper, Button, Label, Input } from './Form.style';
+import { Form, Title } from './Form.style';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContact } from 'redux/contact/selectors';
 import { addContact } from 'redux/contact/contactOperations';
+import TextField from '@mui/material/TextField';
+import SaveIcon from '@mui/icons-material/Save';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { useAuth } from 'hooks/useAuth';
 
 export const ContactForm = ({ toggleModal }) => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContact);
+  const { authIsLoading } = useAuth();
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     defaultValues: {
       name: '',
       number: '',
     },
+    mode: 'onChange',
   });
 
   const onSubmit = values => {
@@ -43,30 +49,54 @@ export const ContactForm = ({ toggleModal }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Wrapper>
-        <Label htmlFor="name">Name</Label>
-        <Input
-          type="text"
-          id="name"
-          {...register('name', { required: 'This is required' })}
-        />
-        <p>{errors.name?.message}</p>
-      </Wrapper>
-      <Wrapper>
-        <Label htmlFor="number">Number</Label>
-        <Input
-          id="number"
-          type="tel"
-          {...register('number', {
-            required: 'This is required',
-            minLength: 6,
-          })}
-        />
-        <p>{errors.number?.message}</p>
-      </Wrapper>
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <Title>Phonebook</Title>
+      <TextField
+        fullWidth
+        id="outlined-basic"
+        label="name"
+        variant="outlined"
+        type="text"
+        sx={{ mb: '15px' }}
+        {...register('name', { required: 'Name is required' })}
+      />
 
-      <Button type="submit">Add Contacs</Button>
-    </form>
+      <p
+        className="errorContainer"
+        style={{ marginBottom: '15px', color: 'red' }}
+      >
+        {errors.name?.message}
+      </p>
+      <TextField
+        fullWidth
+        id="outlined-basic"
+        label="number"
+        variant="outlined"
+        type="text"
+        sx={{ mb: '15px' }}
+        {...register('number', {
+          required: 'This is required',
+          minLength: 6,
+        })}
+      />
+      <p
+        className="errorContainer"
+        style={{ marginBottom: '15px', color: 'red' }}
+      >
+        {errors.number?.message}
+      </p>
+      <LoadingButton
+        loading={authIsLoading}
+        loadingPosition="start"
+        startIcon={<SaveIcon />}
+        type="submit"
+        fullWidth
+        variant="contained"
+        sx={{ mt: 3, mb: 2, height: 60 }}
+        disabled={!isValid}
+      >
+        Add Contacs
+      </LoadingButton>
+    </Form>
   );
 };

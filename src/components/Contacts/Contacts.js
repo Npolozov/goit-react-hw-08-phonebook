@@ -34,7 +34,6 @@ export const Contacts = () => {
           </Button>
           {showModal && (
             <OpenModal onClose={toggleModal}>
-              <Title>Phonebook</Title>
               <ContactForm toggleModal={toggleModal} />
             </OpenModal>
           )}
