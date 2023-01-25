@@ -16,7 +16,7 @@ body {
    padding: 0 20px 0 20px;
 
    @media screen and (max-width: 1200px)  {
-      width: 768px;
+      width: 100%;
     }
 
     @media screen and (max-width: 768px)  {

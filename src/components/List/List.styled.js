@@ -9,14 +9,14 @@ export const ListStyle = styled.ul`
 
 export const ItemStyle = styled.li`
   display: grid;
-  grid-template-columns: 1fr 20%;
+  grid-template-columns: 1fr 20% 20%;
   grid-template-rows: 1fr;
   gap: 10px;
   align-items: center;
   padding: 5px;
 
   @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr 40%;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
   &:hover {

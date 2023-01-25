@@ -19,7 +19,7 @@ export const Login = () => {
     reset,
   } = useForm({
     defaultValues: {
-      name: ' ',
+      email: ' ',
       password: '',
     },
     mode: 'onChange',

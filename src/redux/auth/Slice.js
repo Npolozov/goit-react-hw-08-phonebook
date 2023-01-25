@@ -6,10 +6,16 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  authError: null,
 };
 
 const handlePending = state => {
   state.authIsLoading = true;
+};
+
+const handleRejected = (state, action) => {
+  state.authError = action.payload;
+  state.authIsLoading = false;
 };
 
 const authSlice = createSlice({
@@ -22,19 +28,24 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
       state.authIsLoading = false;
+      state.authError = null;
     },
+    [registerUse.rejected]: handleRejected,
     [logIn.pending]: handlePending,
     [logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
-        state.isLoggedIn = true;
-          state.authIsLoading = false;
+      state.isLoggedIn = true;
+      state.authIsLoading = false;
+      state.authError = null;
     },
+    [logIn.rejected]: handleRejected,
     [logOut.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
     },
+    [logOut.rejected]: handleRejected,
     [refreshUser.pending](state) {
       state.isRefreshing = true;
     },
@@ -42,9 +53,13 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.isLoggedIn = true;
       state.isRefreshing = false;
+      state.authIsLoading = false;
+      state.authError = null;
     },
-    [refreshUser.rejected](state) {
+    [refreshUser.rejected](state, action) {
+      state.authError = action.payload;
       state.isRefreshing = false;
+      state.authIsLoading = false;
     },
   },
 });
