@@ -44,17 +44,19 @@ const authSlice = createSlice({
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
+      state.authError = null;
+      state.authIsLoading = false;
     },
-    [logOut.rejected]: handleRejected,
     [refreshUser.pending](state) {
       state.isRefreshing = true;
+      state.authIsLoading = false;
     },
     [refreshUser.fulfilled](state, action) {
       state.user = action.payload;
       state.isLoggedIn = true;
       state.isRefreshing = false;
-      state.authIsLoading = false;
       state.authError = null;
+      state.authIsLoading = false;
     },
     [refreshUser.rejected](state, action) {
       state.authError = action.payload;

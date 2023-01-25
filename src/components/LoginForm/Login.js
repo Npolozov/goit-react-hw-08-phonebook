@@ -27,14 +27,12 @@ export const Login = () => {
 
   const onSubmit = values => {
     console.log(values);
-    // const { name, email, password } = values;
+
     dispatch(logIn(values))
       .unwrap()
       .then(() => toast.success('You are successfully logged in'))
       .catch(() =>
-        toast.error(
-          'Something went wrong...Try reloading the page and enter valid email, password'
-        )
+        toast.error('Try reloading the page and enter valid email, password')
       );
     reset();
   };

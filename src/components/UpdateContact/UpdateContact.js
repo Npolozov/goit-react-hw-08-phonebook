@@ -100,7 +100,7 @@ export const UpdateModal = ({ id, toggleModal, name, number }) => {
         sx={{ mt: 3, mb: 2, height: 60 }}
         disabled={!isValid}
       >
-        Add Contacs
+        Update Contact
       </LoadingButton>
     </Form>
   );
