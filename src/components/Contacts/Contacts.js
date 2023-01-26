@@ -10,7 +10,7 @@ import {
   Button,
 } from './Contacts.styled';
 import { OpenModal } from 'components/Modal/Modal';
-import { ToastContainer } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import { getContact } from 'redux/contact/selectors';
@@ -43,7 +43,6 @@ export const Contacts = () => {
           {contacts.length >= 1 && <Filter />}
           <List />
         </WrapperContact>
-        <ToastContainer autoClose={2000} position="top-right" />
       </Container>
     </>
   );

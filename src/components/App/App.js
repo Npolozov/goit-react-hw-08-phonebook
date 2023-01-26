@@ -11,6 +11,7 @@ import { RestrictedRoute } from '../RestrictedRoute';
 import { LoginForm } from 'pages/LoginForm';
 import { RegisterForm } from 'pages/RegisterForm';
 import { PersonalContacts } from 'pages/PersonalContacts';
+import { ToastContainer } from 'react-toastify';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -61,6 +62,7 @@ export const App = () => {
           ></Route>
         </Route>
       </Routes>
+      <ToastContainer autoClose={2000} position="top-right" />
       <GlobalStyle />
     </>
   );
