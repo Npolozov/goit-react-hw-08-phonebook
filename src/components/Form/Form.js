@@ -42,7 +42,14 @@ export const ContactForm = ({ toggleModal }) => {
     ) {
       return toast.error(`${number} is already in contacts.`);
     } else {
-      dispatch(addContact({ name, number }));
+      dispatch(addContact({ name, number }))
+        .unwrap()
+        .then(() => toast.success('Contact is add'))
+        .catch(() =>
+          toast.error(
+            'Something went wrong...Try reloading the page and enter valid email, password'
+          )
+        );
     }
 
     toggleModal();

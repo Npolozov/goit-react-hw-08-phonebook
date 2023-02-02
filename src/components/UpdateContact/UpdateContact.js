@@ -13,9 +13,6 @@ export const UpdateModal = ({ id, toggleModal, name, number }) => {
   const dispatch = useDispatch();
   const { authIsLoading } = useAuth();
 
-  console.log(name);
-  console.log(number);
-
   const {
     register,
     handleSubmit,
@@ -30,9 +27,6 @@ export const UpdateModal = ({ id, toggleModal, name, number }) => {
   });
 
   const onSubmit = values => {
-    console.log(values);
-
-    const { name, number } = values;
     if (
       name.trim().toLowerCase() === values.name.trim().toLowerCase() &&
       number === values.number
