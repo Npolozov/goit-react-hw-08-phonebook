@@ -12,12 +12,11 @@ import {
 import { OpenModal } from 'components/Modal/Modal';
 
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector } from 'react-redux';
-import { getContact } from 'redux/contact/selectors';
+import { useContact } from 'hooks/useContacts';
 
 export const Contacts = () => {
-  const contacts = useSelector(getContact);
   const [showModal, setShowModal] = useState(false);
+  const { contacts } = useContact();
 
   const toggleModal = () => {
     setShowModal(!showModal);

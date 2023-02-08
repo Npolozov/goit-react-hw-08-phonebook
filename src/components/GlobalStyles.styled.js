@@ -11,17 +11,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-   width: 1200px;
+  width: 100%;
    margin: 0 auto;
    padding: 0 20px 0 20px;
 
-   @media screen and (max-width: 1200px)  {
-      width: 100%;
-    }
-
-    @media screen and (max-width: 768px)  {
-      width: 488px;
-    }
 }
 
 code {

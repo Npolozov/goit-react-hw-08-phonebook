@@ -21,13 +21,14 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     box-shadow: inset 0px 0px 4px 4px rgba(0, 0, 0, 0.15);
-    color: white;
+    background: white;
   }
 `;
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
+  margin-left: auto;
 `;
 
 export const Text = styled.p`

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 const styles = {
   container: {
-    marginTop: 100,
+    marginTop: 200,
   },
   title: {
     fontWeight: 500,

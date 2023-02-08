@@ -1,10 +1,10 @@
 import { ListContact } from '../ListContact/ListContact';
 import { ListStyle, ItemStyle, TotalParagraf } from './List.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContact, getError, getIsLoading } from 'redux/contact/selectors';
 import { getStatusFilter } from 'redux/filter/selector';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contact/contactOperations';
+import { useContact } from 'hooks/useContacts';
 
 export const List = () => {
   const dispatch = useDispatch();
@@ -13,10 +13,8 @@ export const List = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const contacts = useSelector(getContact);
+  const { contacts, error, isLoading } = useContact();
   const filter = useSelector(getStatusFilter);
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
 
   const normalizeFilter = filter.toLowerCase();
 

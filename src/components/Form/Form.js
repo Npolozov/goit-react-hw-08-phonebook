@@ -1,17 +1,17 @@
 import { useForm } from 'react-hook-form';
 import { Form, Title } from './Form.style';
 import { toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContact } from 'redux/contact/selectors';
+import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/contact/contactOperations';
 import TextField from '@mui/material/TextField';
 import SaveIcon from '@mui/icons-material/Save';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useAuth } from 'hooks/useAuth';
+import { useContact } from 'hooks/useContacts';
 
 export const ContactForm = ({ toggleModal }) => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContact);
+  const { contacts } = useContact();
   const { authIsLoading } = useAuth();
 
   const {

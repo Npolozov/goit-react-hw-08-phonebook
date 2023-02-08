@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { AppBar } from './AppBar/AppBar';
+import { Header } from './AppBar/AppBar';
 import { Suspense } from 'react';
 import { Footer } from './Footer/Footer';
 
@@ -9,7 +9,7 @@ export const Layout = () => {
       className="mainContainer"
       style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
     >
-      <AppBar />
+      <Header />
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>

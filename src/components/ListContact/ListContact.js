@@ -1,16 +1,16 @@
 import { Button, ConteinerButton } from './ListContact.styled';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contact/contactOperations';
 import { toast } from 'react-toastify';
-import { getIsLoading } from 'redux/contact/selectors';
 import { useState } from 'react';
 import { UpdateModal } from 'components/UpdateContact/UpdateContact';
 import { OpenModal } from 'components/Modal/Modal';
+import { useContact } from 'hooks/useContacts';
 
 export function ListContact({ name, number, id }) {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
+  const { isLoading } = useContact();
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
