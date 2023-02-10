@@ -8,4 +8,8 @@ export const Container = styled.div`
 
 export const Form = styled.form`
   width: 400px;
+
+  @media screen and (max-width: 767px) {
+    width: 300px;
+  }
 `;
