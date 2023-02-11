@@ -11,6 +11,6 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  width: 300px;
+  width: 100%;
   padding: 10px;
 `;
