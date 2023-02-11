@@ -3,16 +3,28 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contact/contactOperations';
 import { toast } from 'react-toastify';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { UpdateModal } from 'components/UpdateContact/UpdateContact';
 import { OpenModal } from 'components/Modal/Modal';
 import { useContact } from 'hooks/useContacts';
 import LoadingButton from '@mui/lab/LoadingButton';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
 
 export function ListContact({ name, number, id }) {
   const dispatch = useDispatch();
   const { isLoading } = useContact();
   const [showModal, setShowModal] = useState(false);
+
+  const [matches, setMatches] = useState(
+    window.matchMedia('(max-width: 768px)').matches
+  );
+
+  useEffect(() => {
+    window
+      .matchMedia('(max-width: 768px)')
+      .addEventListener('change', e => setMatches(e.matches));
+  }, []);
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -33,22 +45,22 @@ export function ListContact({ name, number, id }) {
 
       <ConteinerButton>
         <LoadingButton
-          size="small"
+          sx={{ minWidth: 50 }}
           loading={isLoading}
           variant="contained"
           color="primary"
           onClick={handleDelete}
         >
-          Delete
+          {matches ? <DeleteRoundedIcon /> : 'Delete'}
         </LoadingButton>
         <LoadingButton
-          size="small"
+          sx={{ minWidth: 50 }}
           loading={isLoading}
           variant="contained"
           color="primary"
           onClick={toggleModal}
         >
-          Update
+          {matches ? <SystemUpdateAltIcon /> : 'Update'}
         </LoadingButton>
         {showModal && (
           <OpenModal onClose={toggleModal}>
