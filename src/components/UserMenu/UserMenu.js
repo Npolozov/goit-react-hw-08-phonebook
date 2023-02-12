@@ -29,12 +29,6 @@ export const UserMenu = () => {
     <Container>
       {!matches && <Text>Welcome, {user.name}</Text>}
       <LoadingButton
-        // sx={{
-        //   color: 'blue',
-        //   '&:hover': {
-        //     backgroundColor: '#ffffff',
-        //   },
-        // }}
         size="small"
         loading={authIsLoading}
         variant="contained"
