@@ -46,7 +46,7 @@ export function ListContact({ name, number, id }) {
       <ConteinerButton>
         <LoadingButton
           sx={{ minWidth: 50 }}
-          loading={isLoading}
+          loading={isLoading && handleDelete}
           variant="contained"
           color="primary"
           onClick={handleDelete}
