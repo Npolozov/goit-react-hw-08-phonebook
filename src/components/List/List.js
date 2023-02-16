@@ -32,9 +32,9 @@ export const List = () => {
       )}
       {totalContact > 0 ? (
         <ListStyle>
-          {visibleContact.map(({ name, number, id }) => (
-            <ItemStyle key={id}>
-              <ListContact id={id} name={name} number={number} />
+          {visibleContact.map(item => (
+            <ItemStyle key={item.id}>
+              <ListContact id={item.id} item={item} />
             </ItemStyle>
           ))}
         </ListStyle>

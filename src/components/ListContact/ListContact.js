@@ -11,7 +11,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
 
-export function ListContact({ name, number, id }) {
+export function ListContact({ item, id }) {
   const dispatch = useDispatch();
   const { isLoading } = useContact();
   const [showModal, setShowModal] = useState(false);
@@ -33,20 +33,23 @@ export function ListContact({ name, number, id }) {
   console.log(showModal);
 
   const handleDelete = () =>
-    dispatch(deleteContact(id), toast.success(`${name} is already in delete.`));
+    dispatch(
+      deleteContact(id),
+      toast.success(`${item.name} is already in delete.`)
+    );
 
   return (
     <>
       <div>
         <p>
-          {name}: <span>{number}</span>
+          {item.name}: <span>{item.number}</span>
         </p>
       </div>
 
       <ConteinerButton>
         <LoadingButton
           sx={{ minWidth: 50 }}
-          loading={isLoading && handleDelete}
+          loading={isLoading}
           variant="contained"
           color="primary"
           onClick={handleDelete}
@@ -55,7 +58,6 @@ export function ListContact({ name, number, id }) {
         </LoadingButton>
         <LoadingButton
           sx={{ minWidth: 50 }}
-          loading={isLoading}
           variant="contained"
           color="primary"
           onClick={toggleModal}
@@ -66,8 +68,8 @@ export function ListContact({ name, number, id }) {
           <OpenModal onClose={toggleModal}>
             <UpdateModal
               id={id}
-              name={name}
-              number={number}
+              name={item.name}
+              number={item.number}
               toggleModal={toggleModal}
             />
           </OpenModal>
