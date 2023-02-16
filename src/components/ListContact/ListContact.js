@@ -13,7 +13,7 @@ import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
 
 export function ListContact({ item, id }) {
   const dispatch = useDispatch();
-  const { isLoading } = useContact();
+  const { isLoading } = useContact(false);
   const [showModal, setShowModal] = useState(false);
 
   const [matches, setMatches] = useState(
