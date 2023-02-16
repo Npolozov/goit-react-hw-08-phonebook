@@ -3,7 +3,7 @@ import { logOut } from 'redux/auth/Operations';
 import { useAuth } from 'hooks/useAuth';
 import { Container, Text } from './UseMenu.style';
 import { toast } from 'react-toastify';
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 export const UserMenu = () => {
@@ -19,11 +19,13 @@ export const UserMenu = () => {
     window.matchMedia('(max-width: 768px)').matches
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     window
       .matchMedia('(max-width: 768px)')
       .addEventListener('change', e => setMatches(e.matches));
   }, []);
+
+  console.log(matches);
 
   return (
     <Container>
