@@ -15,6 +15,7 @@ export function ListContact({ item, id }) {
   const dispatch = useDispatch();
   const { isLoading } = useContact(false);
   const [showModal, setShowModal] = useState(false);
+  const [currentId, setCurrentId] = useState();
 
   const [matches, setMatches] = useState(
     window.matchMedia('(max-width: 768px)').matches
@@ -32,11 +33,15 @@ export function ListContact({ item, id }) {
 
   console.log(showModal);
 
-  const handleDelete = () =>
-    dispatch(
-      deleteContact(id),
-      toast.success(`${item.name} is already in delete.`)
-    );
+  const handleDelete = () => {
+    setCurrentId(id);
+    dispatch(deleteContact(id))
+      .unwrap()
+      .then(() => toast.success('You are successfully add contact'))
+      .catch(() =>
+        toast.error('Try reloading the page and enter valid email, password')
+      );
+  };
 
   return (
     <>
@@ -49,7 +54,7 @@ export function ListContact({ item, id }) {
       <ConteinerButton>
         <LoadingButton
           sx={{ minWidth: 50 }}
-          loading={isLoading}
+          loading={isLoading && currentId === id}
           variant="contained"
           color="primary"
           onClick={handleDelete}
